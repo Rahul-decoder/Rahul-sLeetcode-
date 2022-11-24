@@ -11,9 +11,8 @@
  */
 class Solution {
 public:
-    vector<vector<int>> fun(TreeNode *root)
-    {
-        vector<vector<int>> ans;
+    vector<int> rightSideView(TreeNode* root) {
+         vector<int> ans;
         queue<TreeNode*> q;
         if(root==NULL)
             return ans;
@@ -36,19 +35,8 @@ public:
                     q.push(ptr->right);
                 n--;
             }
-            ans.push_back(v);
+            ans.push_back(v[v.size()-1]);
         }
         return ans;
-    }
-    vector<int> rightSideView(TreeNode* root) {
-        vector<vector<int>> ans=fun(root);
-       int n=ans.size(),i;
-        vector<int> v;
-        for(i=0;i<n;i++)
-        {
-            int p=ans[i].size()-1;
-            v.push_back(ans[i][p]);
-        }
-       return v; 
     }
 };
