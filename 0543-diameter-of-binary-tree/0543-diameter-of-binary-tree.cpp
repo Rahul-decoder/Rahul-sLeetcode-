@@ -16,16 +16,13 @@ public:
     {
         if(ptr==NULL)
             return 0;
-       return max(height(ptr->left),height(ptr->right))+1;
+        int a=height(ptr->left);
+        int b=height(ptr->right);
+        maxi=max(maxi,a+b);
+       return max(a,b)+1;
     }
     int diameterOfBinaryTree(TreeNode* root) {
-        int a=height(root->left);
-        int b=height(root->right);
-        maxi=max(maxi,a+b);
-        if(root->left!=NULL)
-          diameterOfBinaryTree(root->left);
-        if(root->right!=NULL)
-            diameterOfBinaryTree(root->right);
+       height(root);
         return maxi;
     }
 };
