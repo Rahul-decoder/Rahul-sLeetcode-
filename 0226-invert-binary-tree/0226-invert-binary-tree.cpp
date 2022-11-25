@@ -22,7 +22,9 @@ public:
             q.pop();
             if(ptr!=NULL)
             {
+                if(ptr->left!=NULL)
                 q.push(ptr->left);
+                 if(ptr->right!=NULL)
                 q.push(ptr->right);
                 swap(ptr->left,ptr->right);
             }
