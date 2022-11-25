@@ -21,11 +21,11 @@ public:
     int diameterOfBinaryTree(TreeNode* root) {
         int a=height(root->left);
         int b=height(root->right);
-        maxi=max(maxi,a+b+1);
+        maxi=max(maxi,a+b);
         if(root->left!=NULL)
           diameterOfBinaryTree(root->left);
         if(root->right!=NULL)
             diameterOfBinaryTree(root->right);
-        return maxi-1;
+        return maxi;
     }
 };
