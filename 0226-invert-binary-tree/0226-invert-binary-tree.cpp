@@ -11,24 +11,17 @@
  */
 class Solution {
 public:
-    TreeNode* invertTree(TreeNode* root) {
-        queue<TreeNode *> q;
-        q.push(root);
-        if(root==NULL)
-            return NULL;
-        while(q.size()!=0)
+    void inorder(TreeNode *ptr)
+    {
+        if(ptr!=NULL)
         {
-           TreeNode *ptr=q.front();
-            q.pop();
-            if(ptr!=NULL)
-            {
-                if(ptr->left!=NULL)
-                q.push(ptr->left);
-                 if(ptr->right!=NULL)
-                q.push(ptr->right);
                 swap(ptr->left,ptr->right);
-            }
+            inorder(ptr->left);
+            inorder(ptr->right);
         }
+    }
+    TreeNode* invertTree(TreeNode* root) {
+        inorder(root);
         return root;
     }
 };
