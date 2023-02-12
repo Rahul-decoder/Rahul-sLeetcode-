@@ -11,7 +11,7 @@ class Solution{
 public:
     int inSequence(int a, int b, int c){
         int r=b-a;
-        if(c==0&&a==b||a==b)
+        if(a==b)
         return 1;
         if(a!=b&&c==0)
         return 0;
