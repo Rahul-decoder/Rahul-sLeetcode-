@@ -8,16 +8,16 @@ using namespace std;
 // User function Template for C++
 
 class Solution {
-    void dfs(vector<vector<int>> &grid,int i,int j, int n,int m,vector<pair<int,int>> &v)
+    void dfs(vector<vector<int>> &grid,int i,int j, int n,int m,vector<pair<int,int>> &v,int r,int p)
     {
         if(i>=n||j>=m||i<0||j<0||grid[i][j]==0)
         return ;
         grid[i][j]=0;
-        v.push_back({i,j});
-        dfs(grid,i+1,j,n,m,v);
-        dfs(grid,i-1,j,n,m,v);
-        dfs(grid,i,j-1,n,m,v);
-        dfs(grid,i,j+1,n,m,v);
+        v.push_back({i-r,j-p});
+        dfs(grid,i+1,j,n,m,v,r,p);
+        dfs(grid,i-1,j,n,m,v,r,p);
+        dfs(grid,i,j-1,n,m,v,r,p);
+        dfs(grid,i,j+1,n,m,v,r,p);
     }
   public:
     int countDistinctIslands(vector<vector<int>>& grid) {
@@ -30,14 +30,7 @@ class Solution {
            {
                if(grid[i][j]==1)
                {
-                dfs(grid,i,j,n,m,v);
-                int x=v[0].first;
-                int y=v[0].second;
-                for(k=0;k<v.size();k++)
-                {
-                    v[k].first=v[k].first-x;
-                    v[k].second=v[k].second-y;
-                }
+                dfs(grid,i,j,n,m,v,i,j);
                 s.insert(v);
                 v.clear();
                }
