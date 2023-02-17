@@ -7,7 +7,7 @@ using namespace std;
 class Solution {
 public:
 	bool isBipartite(int v, vector<int>adj[]){
-	    int a[v]={-1},i,j;
+	    int a[v],i,j;
 	    for(i=0;i<v;i++)
 	    a[i]=-1;
 	    for(j=0;j<v;j++)
