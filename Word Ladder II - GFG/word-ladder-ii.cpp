@@ -48,17 +48,14 @@ public:
                 }
             }
 
-            // cout<<level<<endl;
             string word = vec.back();
             // store the answers if the end word matches with targetWord.
             if (word == endWord)
             {       
-                    // cout<<level<<" -l\n";
-                    // for(auto a:vec) cout<<a<<" ";
-                    // cout<<"\n";
                     ans.push_back(vec);
-                    continue;
             }
+            if(ans.size()&&level==ans[0].size())
+            continue;
             // cout<<"'vfknvl"<<endl;
             for (int i = 0; i < word.size(); i++)
             {   
