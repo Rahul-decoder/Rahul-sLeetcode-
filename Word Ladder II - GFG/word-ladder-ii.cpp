@@ -57,7 +57,7 @@ public:
                     // for(auto a:vec) cout<<a<<" ";
                     // cout<<"\n";
                     ans.push_back(vec);
-                    // continue;
+                    continue;
             }
             // cout<<"'vfknvl"<<endl;
             for (int i = 0; i < word.size(); i++)
