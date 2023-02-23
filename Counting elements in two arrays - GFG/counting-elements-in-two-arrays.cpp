@@ -19,8 +19,16 @@ class Solution{
         vector<int> v;
         for(i=0;i<m;i++)
         {
-            int r=upper_bound(arr2,arr2+n,arr1[i])-arr2;
-            v.push_back(r);
+           int low=0,high=n-1;
+           while(low<=high)
+           {
+               int mid=(low+high)/2;
+               if(arr2[mid]<=arr1[i])
+               low=mid+1;
+               else
+               high=mid-1;
+           }
+           v.push_back(low);
         }
         return v;
     }
