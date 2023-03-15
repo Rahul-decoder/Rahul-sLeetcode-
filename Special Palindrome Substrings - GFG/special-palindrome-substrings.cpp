@@ -17,7 +17,7 @@ class Solution{
         string s=s1;
         for(i=0;i<=n1-n2;i++)
         {
-            int count=0,flag=0;
+            int count=0;
             s=s1;
            for(j=0;j<n2;j++)
            {
@@ -34,12 +34,12 @@ class Solution{
                {
                count++;
                if(low>=i&&low<i+n2&&high>=i&&high<i+n2)
-               flag=1;
+                break;
                }
                low++;
                high--;
            }
-           if(flag==1)
+           if(high>=low)
            continue;
            mini=min(mini,count);
         }
