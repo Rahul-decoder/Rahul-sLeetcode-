@@ -31,20 +31,21 @@ public:
 class Solution {
   public:
     vector<int> getDistinctDifference(int n, vector<int> &a) {
-       vector<int> v,v1,v2;
+       vector<int> v;
        int i;
-       set<int> s,s1;
+       set<int> s;
        for(i=0;i<n;i++)
        {
            v.push_back(s.size());
             s.insert(a[i]);
-            v1.push_back(s1.size());
-            s1.insert(a[n-1-i]);
        }
-       reverse(v1.begin(),v1.end());
-       for(i=0;i<n;i++)
-           v2.push_back(v[i]-v1[i]);
-           return v2;
+       s.clear();
+       for(i=n-1;i>=0;i--)
+          {
+              v[i]-=s.size();
+              s.insert(a[i]);
+          }
+          return v;
     }
 };
 
