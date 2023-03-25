@@ -17,14 +17,15 @@ class Solution {
            if(frogs[i]>leaves||a[frogs[i]]!=0)
            continue;
           for(j=frogs[i];j<=leaves;j+=frogs[i])
+          {
+              if(a[j]==0)
+              {
               a[j]=1;
+              count++;
+              }
+          }
        }
-       for(i=1;i<leaves+1;i++)
-       {
-           if(a[i]==0)
-           count++;
-       }
-       return count;
+       return leaves-count;
     }
 };
 
