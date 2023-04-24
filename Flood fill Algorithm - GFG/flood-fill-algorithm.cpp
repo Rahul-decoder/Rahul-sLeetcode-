@@ -4,23 +4,24 @@ using namespace std;
 
 // } Driver Code Ends
 class Solution {
-    void dfs(vector<vector<int>> &image,int i,int j,int n, int m,int newcolor,int color)
-    {
-        if(i<0||i>=n||j<0||j>=m||image[i][j]==newcolor||image[i][j]!=color)
-        return ;
-        image[i][j]=newcolor;
-        dfs(image,i+1,j,n,m,newcolor,color);
-        dfs(image,i-1,j,n,m,newcolor,color);
-        dfs(image,i,j+1,n,m,newcolor,color);
-        dfs(image,i,j-1,n,m,newcolor,color);
-    }
 public:
+void fun(int i,int j,int n,int m,vector<vector<int>> &v,int p,int newcolor)
+{
+    if(i>=n||j>=m||i<0||j<0||v[i][j]==newcolor||v[i][j]!=p)
+    return;
+    v[i][j]=newcolor;
+    fun(i-1,j,n,m,v,p,newcolor);
+    fun(i+1,j,n,m,v,p,newcolor);
+    fun(i,j-1,n,m,v,p,newcolor);
+    fun(i,j+1,n,m,v,p,newcolor);
+}
     vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newcolor) {
-        int color=image[sr][sc];
-        int n=image.size();
-        int m=image[0].size();
-        dfs(image,sr,sc,n,m,newcolor,color);
-        return image;
+        vector<vector<int>> v;
+        v=image;
+        int p=image[sr][sc];
+        int n=image.size(),m=image[0].size();
+        fun(sr,sc,n,m,v,p,newcolor);
+         return v;
     }
 };
 
