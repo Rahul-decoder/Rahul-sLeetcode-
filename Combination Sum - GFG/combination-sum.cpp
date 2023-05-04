@@ -8,31 +8,34 @@ using namespace std;
 // } Driver Code Ends
 //User function template for C++
 
+//User function template for C++
+
 class Solution {
   public:
     //Function to return a list of indexes denoting the required 
     //combinations whose sum is equal to given number.
-    void fun(vector<int> &A,int B,vector<vector<int>> &v,int i,vector<int> &v1)
+    void fun(vector<int> &A,int B,vector<vector<int>> &v,vector<int> &v1,int i)
     {
-        if(B<0||i>=A.size())
+        if(B<0)
         return;
         if(B==0)
         {
             v.push_back(v1);
             return;
         }
-        v1.push_back(A[i]);
-        fun(A,B-A[i],v,i,v1);
-        v1.pop_back();
-        fun(A,B,v,i+1,v1);
+        for(;i<A.size();i++)
+        {
+           v1.push_back(A[i]);
+           fun(A,B-A[i],v,v1,i);
+           v1.pop_back();
+        }
     }
-    vector<vector<int> > combinationSum(vector<int> &A, int B) {
+    vector<vector<int>> combinationSum(vector<int> &A, int B) {
         sort(A.begin(),A.end());
-        A.erase(unique(A.begin(), A.end()), A.end());
+        A.erase(unique(A.begin(),A.end()),A.end());
         vector<vector<int>> v;
         vector<int> v1;
-        fun(A,B,v,0,v1);
-        
+        fun(A,B,v,v1,0);
         return v;
     }
 };
