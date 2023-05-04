@@ -6,32 +6,29 @@ using namespace std;
 class Solution
 {
 	public:
-	set<string> fun(string s)
+	void fun(string s,string s1,set<string> &v)
 	{
 	    if(s.size()==0)
 	    {
-	        set<string> v;
-	        v.insert("");
-	        return v;
+    	     v.insert(s1);
+    	     return ;
 	    }
-	    set<string> v1;
 	    for(int i=0;i<s.size();i++)
-	    {
-	        string s1=s;
-	        s1.erase(s1.begin()+i);
-	        set<string> v=fun(s1);
-	        for(auto x:v)
-	        v1.insert(s[i]+x);
+	    {  
+	        string st=s;
+	        st.erase(st.begin()+i);
+	        fun(st,s1+s[i],v);
 	    }
-	    return v1;
 	}
 		vector<string>find_permutation(string s)
 		{
-		   set<string> st=fun(s);
-		   vector<string> v;
-		   for(auto x:st)
-		       v.push_back(x);
-		       return v;
+		    string s1="";
+		    set<string> v;
+		    vector<string> vr; 
+		    fun(s,s1,v);
+		    for(auto x:v)
+		    vr.push_back(x);
+		    return vr;
 		}
 };
 
