@@ -8,23 +8,18 @@ class Solution {
   bool fun(vector<int> adj[],vector<int> &vis,int i)
   {
       queue<int> q;
-      map<int,int> m;
       q.push(i);
-      m[i]++;
       while(!q.empty())
       {
           int p=q.front();
           q.pop();
+          if(vis[p])
+          return 1;
           vis[p]=1;
           for(auto x:adj[p])
           {
               if(vis[x]==0)
-              {
-                  q.push(x);
-                  m[x]++;
-              }
-              if(m[x]>1)
-              return 1;
+              q.push(x);
           }
       }
       return 0;
