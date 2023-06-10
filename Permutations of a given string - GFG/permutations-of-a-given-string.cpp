@@ -6,27 +6,33 @@ using namespace std;
 class Solution
 {
 	public:
-	void fun(string s,set<string> &st,string s1)
+	void fun(int count,vector<string> &v,string s1,map<char,int> m)
 	{
-	    if(s.size()==0)
+	    if(count==0)
 	    {
-	        st.insert(s1);
+	        v.push_back(s1);
 	        return;
 	    }
-	    for(int i=0;i<s.size();i++)
+	    for(auto x:m)
 	    {
-	        string s2=s;
-	        s2.erase(s2.begin()+i);
-	        fun(s2,st,s1+s[i]);
+	        if(x.second>0)
+	        {
+    	        int a=x.second;
+    	        char ch =x.first;
+    	        m[ch]=a-1;
+    	        fun(count-1,v,s1+ch,m);
+    	        m[ch]=a;
+	        }
 	    }
 	}
 		vector<string>find_permutation(string s)
 		{
 		    vector<string> v;
-		    set<string> st;
-		    fun(s,st,"");
-		    for(auto x:st)
-		    v.push_back(x);
+		    map<char,int> m;
+		    int i;
+		    for(i=0;i<s.size();i++)
+		    m[s[i]]++;
+		    fun(s.size(),v,"",m);
 		    return v;
 		}
 };
