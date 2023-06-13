@@ -9,22 +9,28 @@ using namespace std;
 class Solution{
 public:	
 	vector<int> kLargest(int arr[], int n, int k) {
-	    priority_queue<int,vector<int>,greater<int>> p;
-	    vector<int> v;
-	    int i;
-	    for(i=0;i<n;i++)
-	    {
-	        p.push(arr[i]);
-	        if(p.size()>k)
-	        p.pop();
-	    }
-	    while(p.size()>0)
-	    {
-	        v.push_back(p.top());
-	        p.pop();
-	    }
-	    reverse(v.begin(),v.end());
-	    return v;
+	   priority_queue<int,vector<int>,greater<int>> pq;
+	   int i;
+	   vector<int> v;
+	   for(i=0;i<n;i++)
+	   {
+	       if(pq.size()<=k)
+	       pq.push(arr[i]);
+	       else
+	       {
+    	       pq.pop();
+    	       i--;
+	       }
+	   }
+	   if(pq.size()>k)
+	   pq.pop();
+	   for(i=0;i<k;i++)
+	   {
+	       v.push_back(pq.top());
+	       pq.pop();
+	   }
+	   reverse(v.begin(),v.end());
+	   return v;
 	}
 
 };
