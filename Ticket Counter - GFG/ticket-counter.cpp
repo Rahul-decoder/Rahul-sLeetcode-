@@ -22,9 +22,7 @@ class Solution {
              count++;
          }
      }
-     if(h-l==0)
-     return l;
-     else if(count%2!=0)
+     if(count%2!=0)
      return l;
      return h;
     }
