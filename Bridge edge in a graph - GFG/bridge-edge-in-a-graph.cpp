@@ -7,26 +7,26 @@ class Solution
 {
 	public:
     //Function to find if the given edge is a bridge in graph.
-    void fun1(vector<vector<int>>&v1,int i,vector<int> &vis)
+    void fun1(vector<int> adj[],int i,vector<int> &vis)
     {
         vis[i]=1;
-        for(auto x:v1[i])
+        for(auto x:adj[i])
         {
             if(vis[x]==0)
             {
-              fun1(v1,x,vis);
+              fun1(adj,x,vis);
             }
         }
     }
-    void fun(vector<vector<int>>&v1,int c,int d,int i,vector<int> &vis)
+    void fun(vector<int> adj[],int c,int d,int i,vector<int> &vis)
     {
         vis[i]=1;
-        for(auto x:v1[i])
+        for(auto x:adj[i])
         {
             if(vis[x]==0)
             {
               if((i!=c||x!=d)&&(i!=d||x!=c))
-              fun(v1,c,d,x,vis);
+              fun(adj,c,d,x,vis);
             }
         }
     }
@@ -34,16 +34,10 @@ class Solution
     {
         vector<int> vis(v,0);
         int i,count=0,count1=0;
-        vector<vector<int>> v1(v);
-        for(i=0;i<v;i++)
-        {
-            for(auto x:adj[i])
-                v1[i].push_back(x);
-        }
         for(i=0;i<v;i++)
         { if(vis[i]==0)
           {
-            fun1(v1,i,vis);
+            fun1(adj,i,vis);
             count++;
           }
         }
@@ -53,7 +47,7 @@ class Solution
         {
             if(vis[i]==0)
             {
-                fun(v1,c,d,i,vis);
+                fun(adj,c,d,i,vis);
                 count1++;
             }
         }
