@@ -5,42 +5,26 @@
 using namespace std; 
 
 // } Driver Code Ends
-//User function template for C++
 
 class Solution{   
 public:
+bool fun(vector<int> &arr,int i,int n,int sum,vector<vector<int>>&v)
+{
+    if(sum==0)
+    return 1;
+    if(i>=n||sum<0)
+    return 0;
+    if(v[i][sum]!=-1)
+    return v[i][sum];
+    return v[i][sum]=(fun(arr,i+1,n,sum,v) || fun(arr,i+1,n,sum-arr[i],v));
+}
     bool isSubsetSum(vector<int>arr, int sum){
-        int i,n=arr.size(),j;
-       vector<vector<int>> v(n+1,vector<int>(sum+1,0));
-       for(i=0;i<n+1;i++)
-       {
-           for(j=0;j<sum+1;j++)
-           {
-               if(j==0&&i==0)
-               v[i][j]=1;
-               else if(j==0)
-               v[i][j]=1;
-               else if(i==0)
-               v[i][j]=0;
-               else
-               {
-                  if(v[i-1][j])
-                  v[i][j]=1;
-                  else
-                  {
-                      if(j-arr[i-1]>=0)
-                      {
-                          if(v[i-1][j-arr[i-1]])
-                          v[i][j]=1;
-                      }
-                  }
-               }
-               
-           }
-       }
-       return v[n][sum];
+        int n=arr.size();
+        vector<vector<int>> v(n+1,vector<int>(sum+1,-1));
+        return fun(arr,0,n,sum,v);
     }
 };
+
 
 //{ Driver Code Starts.
 int main() 
