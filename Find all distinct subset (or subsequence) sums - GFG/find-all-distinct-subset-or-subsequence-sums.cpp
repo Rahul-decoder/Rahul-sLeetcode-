@@ -10,7 +10,7 @@ int fun(vector<int>&nums,int i,set<int>&s,int sum,vector<vector<int>>&dp)
     if(i>=nums.size())
     {
         s.insert(sum);
-        return 0;
+        return sum;
     }
     if(dp[i][sum]!=-1)
     return dp[i][sum];
