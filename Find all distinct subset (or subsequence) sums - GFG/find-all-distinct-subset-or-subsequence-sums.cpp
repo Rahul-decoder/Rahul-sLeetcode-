@@ -14,7 +14,7 @@ int fun(vector<int>&nums,int i,set<int>&s,int sum,vector<vector<int>>&dp)
     }
     if(dp[i][sum]!=-1)
     return dp[i][sum];
-    return dp[i][sum]=max(fun(nums,i+1,s,sum+nums[i],dp),fun(nums,i+1,s,sum,dp));
+    return dp[i][sum]=min(fun(nums,i+1,s,sum+nums[i],dp),fun(nums,i+1,s,sum,dp));
 }
 	vector<int> DistinctSum(vector<int>nums){
 	    vector<vector<int>> dp(101,vector<int>(10001,-1));
