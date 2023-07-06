@@ -10,21 +10,22 @@ using namespace std;
 
 class Solution{
   public:
+  int fun(int price[],int n,vector<int>&v)
+  {
+      if(n==0)
+      return 0;
+      if(v[n]!=-1)
+      return v[n];
+      for(int i=1;i<=n;i++)
+       v[n]=max(price[i-1]+fun(price,n-i,v),v[n]);
+      return v[n]; 
+  }
     int cutRod(int price[], int n) {
-        int i,j;
-        vector<int> dp(n+1,-1);
-        dp[0]=0;
-        for(i=1;i<n+1;i++)
-        {
-            for(j=1;j<=i;j++)
-            {
-                if(dp[i-j]!=-1)
-                dp[i]=max(dp[i],price[j-1]+dp[i-j]);
-            }
-        }
-        return dp[n];
+        vector<int> v(n+1,-1);
+        return fun(price,n,v);
     }
 };
+
 
 //{ Driver Code Starts.
 
