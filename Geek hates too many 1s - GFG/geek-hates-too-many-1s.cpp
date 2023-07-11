@@ -27,28 +27,14 @@ class Solution {
         {
             if(s[i]=='1')
             count++;
-            if(count==5)
+            if(count==3)
             {
-                s[i-2]='0';
-                count=2;
-            }
-            if(s[i]=='0'&&count==4)
-            {
-                s[i-2]='0';
-                count=0;
-            }
-            if(s[i]=='0'&&count==3)
-            {
-                s[i-1]='0';
+                s[i]='0';
                 count=0;
             }
             if(s[i]=='0')
             count=0;
         }
-        if(count==3)
-        s[i-1]='0';
-        if(count==4)
-        s[i-2]='0';
         int sum=0;
         reverse(s.begin(),s.end());
         for(i=0;i<s.size();i++)
