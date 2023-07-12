@@ -4,26 +4,26 @@ using namespace std;
 
 
 // } Driver Code Ends
+/*You are required to complete this method */
+
 class Solution{
   public:
-    bool fun(int a[],int n,vector<int> v,int i,int k)
+    bool fun(int a[],int n,vector<int>&v,int i,int k)
     {
         if(i==n)
         {
             if(v.size()==k)
             {
-                int count=0;
-                for(int j=0;j<v.size()-1;j++)
+                for(int j=0;j<k-1;j++)
                 {
-                    if(v[j]==v[j+1])
-                    count++;
+                    if(v[j]!=v[j+1])
+                    return 0;
                 }
-                if(count==k-1)
                 return 1;
             }
             return 0;
         }
-        for(int j=0;j<v.size();j++)
+        for(int j=0;j<(int)v.size();j++)
         {
             v[j]+=a[i];
             if(fun(a,n,v,i+1,k))
@@ -35,6 +35,7 @@ class Solution{
             v.push_back(a[i]);
             if(fun(a,n,v,i+1,k))
             return 1;
+            v.pop_back();
         }
         return 0;
     }
