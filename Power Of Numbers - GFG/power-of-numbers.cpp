@@ -4,29 +4,25 @@ using namespace std;
 # define mod 1000000007
 
 // } Driver Code Ends
-
 class Solution{
     public:
-    //You need to complete this fucntion
-    
+   
     long long int fun(int n,int r)
     {
         if(r==0)
         return 1;
-        long long res=fun(n,r/2)%1000000007;
+        long long int temp=fun(n,r/2);
         if(r%2==0)
-        return (res*res)%1000000007;
-        else
-        return (n*((res*res)%1000000007))%1000000007;
+        return ((temp)%1000000007*(temp)%1000000007)%1000000007;
+        return (n*((temp)%1000000007*(temp)%1000000007)%1000000007)%1000000007;
     }
-
+    
     long long power(int n,int r)
     {
-      return fun(n,r);
+       return fun(n,r);    
     }
 
 };
-
 
 //{ Driver Code Starts.
 
