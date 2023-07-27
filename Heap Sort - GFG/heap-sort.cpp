@@ -14,25 +14,45 @@ class Solution
     //Heapify function to maintain heap property.
     void heapify(int arr[], int n, int i)  
     {
-      int l=2*i+1,r=2*i+2;
-      int s=i;
-      if(l<n&&arr[l]>arr[s])
-      s=l;
-      if(r<n&&arr[r]>arr[s])
-      s=r;
-      if(s!=i)
-      {
-          swap(arr[i],arr[s]);
-          heapify(arr,n,s);
+      // Your Code Here
+      int largest=i;
+
+// LEFT SIZE;
+      int l=2*i+1;
+
+// right size;
+      int r=2*i+2;
+      
+      //check the left value which is grater than the largest
+      if(l<n && arr[l]>arr[largest]){
+          largest=l;
       }
+      // check the right value which is grater than the largest
+      if(r<n && arr[r]>arr[largest]){
+          largest=r;
+      }
+
+ 
+
+// the largest not euqal to the current value i
+      if(largest!=i){
+
+// then swap its
+          swap(arr[i],arr[largest]);
+          
+          heapify(arr,n,largest);
+      }
+      
     }
 
     public:
     //Function to build a Heap from array.
     void buildHeap(int arr[], int n)  
     { 
-      for(int i=(n-2)/2;i>=0;i--)
-      heapify(arr,n,i);
+    // Your Code Here
+        for(int i=n/2-1;i>=0;i--){
+            heapify(arr,n,i);
+        }
     }
 
     
@@ -40,10 +60,10 @@ class Solution
     //Function to sort an array using Heap Sort.
     void heapSort(int arr[], int n)
     {
+        //code here
         buildHeap(arr,n);
-        for(int i=n-1;i>=1;i--)
-        {
-            swap(arr[0],arr[i]);
+        for(int i=n-1;i>0;i--){
+            swap(arr[i],arr[0]);
             heapify(arr,i,0);
         }
     }
