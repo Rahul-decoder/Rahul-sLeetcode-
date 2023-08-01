@@ -10,23 +10,24 @@ class Solution{
     // Function to find the trapped water between the blocks.
     public:
     long long trappingWater(int arr[], int n){
-            int a[n],b[n],i,maxi=arr[0];
-            a[0]=arr[0];
-            long long int count=0;
-            for(i=1;i<n;i++)
+        long long int count=0;
+        int i,lm=arr[0],rm=arr[n-1],l=0,r=n-1;
+        while(l<=r)
+        {
+            if(arr[l]<=arr[r])
             {
-                a[i]=max(maxi,arr[i]);
-                maxi=max(maxi,arr[i]);
+                lm=max(lm,arr[l]);
+                count+=lm-arr[l];
+                l++;
             }
-            maxi=arr[n-1],b[n-1]=maxi;
-            for(i=n-2;i>=0;i--)
+            else
             {
-                b[i]=max(maxi,arr[i]);
-                maxi=max(maxi,arr[i]);
+                rm=max(rm,arr[r]);
+                count+=rm-arr[r];
+                r--;
             }
-            for(i=1;i<n-1;i++)
-            count+=min(a[i],b[i])-arr[i];
-            return count;
+        }
+        return count;
     }
 };
 
