@@ -13,23 +13,23 @@ class Solution {
         int i;
         for(i=0;i<m;i++)
         v[edges[i][0]].push_back({edges[i][2],edges[i][1]});
-        vector<int> v1(n,INT_MAX);
-        queue<pair<int,int>> pq;
+        vector<int> v1(n,INT_MAX),vis(n,0);
+        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> pq;
         pq.push({0,0});
-        v1[0]=0;
         while(pq.size()>0)
         {
-            pair<int,int> p=pq.front();
+            pair<int,int> p=pq.top();
             pq.pop();
             int a=p.first;
             int b=p.second;
+            if(vis[b]==1)
+            continue;
+            vis[b]=1;
+            v1[b]=a;
             for(auto x:v[b])
             {
-                if(a+x.first<v1[x.second])
-                {
-                    v1[x.second]=a+x.first;
-                    pq.push({v1[x.second],x.second});
-                }
+                if(vis[x.second]==0)
+                pq.push({a+x.first,x.second});
             }
             
         }
