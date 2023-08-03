@@ -14,12 +14,12 @@ class Solution {
         for(i=0;i<m;i++)
         v[edges[i][0]].push_back({edges[i][2],edges[i][1]});
         vector<int> v1(n,INT_MAX);
-        priority_queue<pair<int,int>> pq;
+        queue<pair<int,int>> pq;
         pq.push({0,0});
         v1[0]=0;
         while(pq.size()>0)
         {
-            pair<int,int> p=pq.top();
+            pair<int,int> p=pq.front();
             pq.pop();
             int a=p.first;
             int b=p.second;
