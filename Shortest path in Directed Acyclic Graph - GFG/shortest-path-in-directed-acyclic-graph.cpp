@@ -14,7 +14,7 @@ class Solution {
         for(i=0;i<m;i++)
         v[edges[i][0]].push_back({edges[i][2],edges[i][1]});
         vector<int> v1(n,INT_MAX);
-        priority_queue<pair<int,int>,vector<pair<int,int>>, greater<pair<int,int>>> pq;
+        priority_queue<pair<int,int>> pq;
         pq.push({0,0});
         v1[0]=0;
         while(pq.size()>0)
@@ -41,6 +41,7 @@ class Solution {
         return v1;
     }
 };
+
 
 
 //{ Driver Code Starts.
