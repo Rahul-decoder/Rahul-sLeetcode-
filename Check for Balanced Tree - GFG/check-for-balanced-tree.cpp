@@ -112,10 +112,7 @@ class Solution{
         int a=fun(root->left);
         int b=fun(root->right);
         if(abs(a-b)>1)
-        {
-            flag=1;
-            return 0;
-        }
+        flag=1;
         return max(a,b)+1;
         
     }
