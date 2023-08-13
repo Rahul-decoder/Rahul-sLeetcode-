@@ -7,17 +7,13 @@ using namespace std;
 // User function Template for C++
 class Solution {
   public:
-  int fun(int n,vector<int>&v)
-  {
-      if(n==0||n==1)
-      return n;
-      if(v[n]!=-1)
-      return v[n];
-      return v[n]=(fun(n-1,v)+fun(n-2,v))%1000000007;
-  }
     int nthFibonacci(int n){
-        vector<int> v(n+1,-1);
-        return fun(n,v);
+       vector<int> v(n+1);
+       v[0]=0;
+       v[1]=1;
+       for(int i=2;i<=n;i++)
+       v[i]=(v[i-1]+v[i-2])%1000000007;
+       return v[n];
     }
 };
 
