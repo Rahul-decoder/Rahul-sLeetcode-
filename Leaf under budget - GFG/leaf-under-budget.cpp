@@ -114,33 +114,33 @@ struct Node
 class Solution
 {
 public:
-void fun(Node *root,vector<int>&v,int count)
-{
-    if(root==NULL)
-    return;
-    if(root->left==NULL&&root->right==NULL)
-    {
-        v.push_back(count);
-        return;
-    }
-    fun(root->left,v,count+1);
-    fun(root->right,v,count+1);
-}
     int getCount(Node *root, int k)
     {
-        vector<int> v;
-        int count=0,i;
-        fun(root,v,1);
-        sort(v.begin(),v.end());
-        for(i=0;i<v.size();i++)
+        queue<Node*> q;
+        q.push(root);
+        int count=0,maxi=0;
+        while(q.size()>0)
         {
-            if(k>=v[i])
+            int n=q.size();
+            count++;
+            while(n--)
             {
-                count++;
-                k=k-v[i];
+                Node* temp=q.front();
+                q.pop();
+                if(temp->left==NULL&&temp->right==NULL&&k>=count)
+                {
+                    maxi++;
+                    k=k-count;
+                }
+                if(temp->left!=NULL)
+                q.push(temp->left);
+                if(temp->right!=NULL)
+                q.push(temp->right);
+                if(k<=0)
+                return maxi;
             }
         }
-        return count;
+        return maxi;
     }
 };
 
