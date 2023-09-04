@@ -8,47 +8,45 @@ using namespace std;
 // User function Template for C++
 
 class Solution{
-    void dfs(vector<vector<char>> &mat,int i,int j,vector<pair<int,int>> &v)
-    {
-        int n=mat.size(),m=mat[0].size();
-        if(i>=n||j>=m||i<0||j<0||mat[i][j]=='X')
-        return ;
-        mat[i][j]='X';
-        v.push_back({i,j});
-        dfs(mat,i+1,j,v);
-        dfs(mat,i-1,j,v);
-        dfs(mat,i,j+1,v);
-        dfs(mat,i,j-1,v);
-    }
 public:
+void fun(vector<vector<char>>&mat,int i,int j,vector<vector<int>>&vis,vector<pair<int,int>>&v,int n,int m,int &flag)
+{
+    if(i>=n||j>=m||i<0||j<0||mat[i][j]=='X'||vis[i][j]==1)
+    return;
+    if(i==0||j==0||i==n-1||j==m-1)
+    {
+        if(mat[i][j]=='O')
+        {
+            flag=1;
+            return;
+        }
+    }
+    vis[i][j]=1;
+    v.push_back({i,j});
+    fun(mat,i+1,j,vis,v,n,m,flag);
+    fun(mat,i-1,j,vis,v,n,m,flag);
+    fun(mat,i,j+1,vis,v,n,m,flag);
+    fun(mat,i,j-1,vis,v,n,m,flag);
+}
     vector<vector<char>> fill(int n, int m, vector<vector<char>> mat)
     {
-        int i,j;
-       vector<pair<int,int>> v;
-        for(i=0;i<n;i++)
+        vector<vector<int>> vis(n,vector<int>(m,-1));
+        int i,j,k;
+        for(i=1;i<n-1;i++)
         {
-           if(mat[i][0]=='O')
-           dfs(mat,i,0,v);
-           if(mat[i][m-1]=='O')
-           dfs(mat,i,m-1,v);
-        }
-        for(i=0;i<m;i++)
-        {
-           if(mat[0][i]=='O')
-           dfs(mat,0,i,v);
-           if(mat[n-1][i]=='O')
-           dfs(mat,n-1,i,v);
-        }
-        for(i=0;i<n;i++)
-        {
-            for(j=0;j<m;j++)
+            for(j=1;j<m-1;j++)
             {
-               mat[i][j]='X';
+                int flag=0;
+                vector<pair<int,int>> v;
+                if(mat[i][j]=='O'&&vis[i][j]==-1)
+                fun(mat,i,j,vis,v,n,m,flag);
+                if(flag==0)
+                {
+                    for(k=0;k<v.size();k++)
+                        mat[v[k].first][v[k].second]='X';
+                }
+                
             }
-        }
-        for(i=0;i<v.size();i++)
-        {
-            mat[v[i].first][v[i].second]='O';
         }
         return mat;
     }
