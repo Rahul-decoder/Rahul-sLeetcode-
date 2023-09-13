@@ -6,23 +6,22 @@ using namespace std;
 class Solution{
 
 	public:
-	int fun(int arr[],int i,int n,int sum,vector<vector<int>>&v)
-    {
-        if(sum==0)
-        return 1;
-        if(i>=n||sum<0)
-        return 0;
-        if(v[i][sum]!=-1)
-        return v[i][sum];
-        return v[i][sum]=(fun(arr,i+1,n,sum,v) + fun(arr,i+1,n,sum-arr[i],v))%1000000007;
-    }
+	int fun(int arr[],int n,int sum, int i,vector<vector<int>> &dp)
+	{
+	    if(sum==0)
+	    return 1;
+	    if(i>=n||sum<0)
+	    return 0;
+	    if(dp[i][sum]!=-1)
+	    return dp[i][sum];
+	    return dp[i][sum]=(fun(arr,n,sum-arr[i],i+1,dp)+fun(arr,n,sum,i+1,dp))%1000000007;
+	}
 	int perfectSum(int arr[], int n, int sum)
 	{
-	    vector<vector<int>> v(n+1,vector<int>(sum+1,-1));
-	    sort(arr,arr+n);
-        return fun(arr,0,n,sum,v);
+       vector<vector<int>> dp(n,vector<int>(sum+1,-1));
+       sort(arr,arr+n);
+       return fun(arr,n,sum,0,dp);
 	}
-	  
 };
 
 //{ Driver Code Starts.
