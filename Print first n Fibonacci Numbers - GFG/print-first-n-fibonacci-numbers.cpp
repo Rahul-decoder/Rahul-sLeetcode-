@@ -12,17 +12,23 @@ class Solution
 {
     public:
     //Function to return list containing first n fibonacci numbers.
+    long long int fun(int n,vector<long long int> &v)
+    {
+        if(n==0||n==1)
+        return v[n]=1;
+        if(v[n]!=-1)
+        return v[n];
+        return v[n]=fun(n-1,v)+fun(n-2,v);
+    }
     vector<long long> printFibb(int n) 
     {
-        vector<long long int> v(n);
-        int i;
-        for(i=0;i<n;i++)
+        vector<long long int> v(n,-1);
+        if(n<=2)
         {
-            if(i<=1)
-            v[i]=1;
-            else
-            v[i]=v[i-1]+v[i-2];
+            v[0]=1;
+            v[1]=1;
         }
+        fun(n-1,v);
         return v;
     }
 };
