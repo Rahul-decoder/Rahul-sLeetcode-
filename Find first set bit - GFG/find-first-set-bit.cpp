@@ -17,7 +17,6 @@ class Solution
     {
         if(n==0)
         return 0;
-        n=n&-n;
         int count=0;
         while(true)
         {
