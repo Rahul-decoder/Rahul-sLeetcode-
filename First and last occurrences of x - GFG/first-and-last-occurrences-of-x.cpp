@@ -8,16 +8,10 @@ class Solution
     public:
     vector<int> find(int arr[], int n , int x )
     { 
-      int i,flag=0;
       int l=lower_bound(arr,arr+n,x)-arr;
       int u=upper_bound(arr,arr+n,x)-arr;
-      for(i=0;i<n;i++)
-      if(x==arr[i])
-      {
-          flag=1;
-          break;
-      }
-      if(flag==0)
+      int p = std::find(arr, arr+n, x)-arr;
+      if(p==n)
       return {-1,-1};
       return {l,u-1};
     }
