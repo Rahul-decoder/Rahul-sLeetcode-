@@ -11,17 +11,29 @@ class Solution
     //traversal of the matrix in a clockwise manner.
     vector<int> boundaryTraversal(vector<vector<int> > matrix, int n, int m) 
     {
-        vector<int> v;
-        int i;
-        for(i=0;i<m;i++)
-        v.push_back(matrix[0][i]);
-        for(i=1;i<n-1;i++)
-        v.push_back(matrix[i][m-1]);
-        for(i=m-1;i>=0&&n>1;i--)
-        v.push_back(matrix[n-1][i]);
-        for(i=n-2;i>=1&&m>1;i--)
-        v.push_back(matrix[i][0]);
-        return v;
+       int i,count=n*m;
+       vector<int> v;
+       for(i=0;i<m&&count>0;i++)
+       {
+          v.push_back(matrix[0][i]);
+          count--;
+       }
+       for(i=1;i<n&&count>0;i++)
+       {
+           v.push_back(matrix[i][m-1]);
+           count--;
+       }
+       for(i=m-2;i>=0&&count>0;i--)
+       {
+           v.push_back(matrix[n-1][i]);
+           count--;
+       }
+       for(i=n-2;i>0&&count>0;i--)
+       {
+           v.push_back(matrix[i][0]);
+           count--;
+       }
+       return v;
     }
 };
 
