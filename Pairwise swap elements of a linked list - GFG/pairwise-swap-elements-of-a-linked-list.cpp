@@ -50,7 +50,7 @@ class Solution
             temp->next=head1;
             temp=head1;
             head1=head2;
-            if(head1==NULL||head2==NULL)
+            if(head2==NULL)
             break;
             head2=head1->next;
         }
