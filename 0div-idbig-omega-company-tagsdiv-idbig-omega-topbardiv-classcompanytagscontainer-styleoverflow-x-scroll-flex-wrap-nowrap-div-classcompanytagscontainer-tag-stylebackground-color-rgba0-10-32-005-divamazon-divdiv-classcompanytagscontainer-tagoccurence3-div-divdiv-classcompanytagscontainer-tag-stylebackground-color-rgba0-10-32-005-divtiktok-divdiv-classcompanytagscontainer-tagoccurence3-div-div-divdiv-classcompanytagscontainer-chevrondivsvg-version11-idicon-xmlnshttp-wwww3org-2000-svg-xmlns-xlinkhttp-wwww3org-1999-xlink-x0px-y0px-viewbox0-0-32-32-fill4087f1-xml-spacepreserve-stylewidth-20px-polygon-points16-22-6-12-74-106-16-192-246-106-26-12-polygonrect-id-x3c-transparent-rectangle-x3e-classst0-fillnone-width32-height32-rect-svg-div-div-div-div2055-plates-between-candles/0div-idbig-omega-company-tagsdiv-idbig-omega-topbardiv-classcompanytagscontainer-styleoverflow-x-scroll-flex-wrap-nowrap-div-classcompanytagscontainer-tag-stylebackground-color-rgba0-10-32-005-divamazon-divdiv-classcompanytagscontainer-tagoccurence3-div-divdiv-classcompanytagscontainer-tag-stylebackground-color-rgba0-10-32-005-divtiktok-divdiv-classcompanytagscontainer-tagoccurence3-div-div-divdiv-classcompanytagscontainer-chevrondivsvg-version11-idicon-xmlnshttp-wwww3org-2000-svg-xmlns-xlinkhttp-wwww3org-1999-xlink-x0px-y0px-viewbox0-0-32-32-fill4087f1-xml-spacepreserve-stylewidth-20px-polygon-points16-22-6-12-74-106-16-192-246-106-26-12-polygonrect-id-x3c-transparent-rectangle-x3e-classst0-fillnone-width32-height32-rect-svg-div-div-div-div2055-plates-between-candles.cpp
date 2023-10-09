@@ -15,12 +15,9 @@ public:
         {
             int a=queries[i][0],b=queries[i][1],p=0,q=0;
             int l=lower_bound(v.begin(),v.end(),a)-v.begin();
-            int u=lower_bound(v.begin(),v.end(),b)-v.begin();
+            int u=upper_bound(v.begin(),v.end(),b)-v.begin();
             if(l==v.size()||v[l]>b)
                 l=-1;
-            if(u==v.size())
-                u--;
-            if(u>=0&&v[u]>b)
                 u--;
             if(l>=0&&u>=0)
             p=v[l],q=v[u];
