@@ -111,15 +111,9 @@ class Solution{
         return 0;
         int a=fun(root->left);
         int b=fun(root->right);
-        if(a==-1||b==-1)
-        return -1;
         if(abs(a-b)>1)
-        {
-            flag=1;
-            return -1;
-        }
+        flag=1;
         return max(a,b)+1;
-        
     }
     bool isBalanced(Node *root)
     {
