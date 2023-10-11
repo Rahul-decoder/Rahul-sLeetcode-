@@ -100,20 +100,26 @@ class Solution
 private:
 
 public:
-     void findpath(Node *root,int t,vector<Node*>&v,vector<Node*>&ans)
+     bool findpath(Node *root,int t,vector<Node*>&ans)
      {
          if(root==NULL)
-         return;
+         return 0;
          if(root->data==t)
          {
-             v.push_back(root);
-             ans=v;
-             return;
+             ans.push_back(root);
+             return 1;
          }
-         v.push_back(root);
-         findpath(root->left,t,v,ans);
-         findpath(root->right,t,v,ans);
-         v.pop_back();
+         if(findpath(root->left,t,ans))
+         {
+             ans.push_back(root);
+             return 1;
+         }
+         if(findpath(root->right,t,ans))
+         {
+             ans.push_back(root);
+             return 1;
+         }
+         return 0;
      }
     void printpath(Node *root,int k,Node* blocker,vector<int> &res)
     {
@@ -126,17 +132,16 @@ public:
     }
     vector <int> KDistanceNodes(Node* root, int target , int k)
     {
-        vector<Node*> v;
         vector<Node*> ans;
         vector<int> res;
-        findpath(root,target,v,ans);
-        reverse(ans.begin(),ans.end());
+        findpath(root,target,ans);
         for(int i=0;i<ans.size();i++)
             printpath(ans[i],k-i,i==0?NULL:ans[i-1],res);
             sort(res.begin(),res.end());
         return res;
     }
 };
+
 
 //{ Driver Code Starts.
 
