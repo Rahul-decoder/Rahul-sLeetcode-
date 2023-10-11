@@ -100,24 +100,26 @@ class Solution
 private:
 
 public:
-     bool findpath(Node *root,int t,vector<Node*>&ans)
+     int findpath(Node *root,int t,int k,vector<int>& res)
      {
          if(root==NULL)
          return 0;
          if(root->data==t)
          {
-             ans.push_back(root);
+             printpath(root,k,NULL,res);
              return 1;
          }
-         if(findpath(root->left,t,ans))
+         int ld=findpath(root->left,t,k,res);
+         if(ld)
          {
-             ans.push_back(root);
-             return 1;
+             printpath(root,k-ld,root->left,res);
+             return ld+1;
          }
-         if(findpath(root->right,t,ans))
+         int rd=findpath(root->right,t,k,res);
+         if(rd)
          {
-             ans.push_back(root);
-             return 1;
+             printpath(root,k-rd,root->right,res);
+             return rd+1;
          }
          return 0;
      }
@@ -132,12 +134,9 @@ public:
     }
     vector <int> KDistanceNodes(Node* root, int target , int k)
     {
-        vector<Node*> ans;
         vector<int> res;
-        findpath(root,target,ans);
-        for(int i=0;i<ans.size();i++)
-            printpath(ans[i],k-i,i==0?NULL:ans[i-1],res);
-            sort(res.begin(),res.end());
+        findpath(root,target,k,res);
+        sort(res.begin(),res.end());
         return res;
     }
 };
