@@ -7,18 +7,19 @@ using namespace std;
 class Solution{
 public:
 	void pushZerosToEnd(int arr[], int n) {
-	   int i=0,j=0;
-	   while(arr[j]!=0)
-	   j++;
-	   while(j<n)
-	   {
-	       while(i<n&&arr[i]!=0)
-	       i++;
-	       while(j<n&&arr[j]==0)
-	       j++;
-	       if(i<n&&j<n&&arr[i]==0&&arr[j]!=0)
-	       swap(arr[i],arr[j]);
-	   }
+	    int i=0,j=0;
+	    while(i<n&&arr[i]!=0)
+	    i++;
+	    j=i+1;
+	    while(j<n)
+	    {
+	        if(arr[j]!=0)
+	        {
+	            swap(arr[i],arr[j]);
+	            i++;
+	        }
+	        j++;
+	    }
 	}
 };
 
