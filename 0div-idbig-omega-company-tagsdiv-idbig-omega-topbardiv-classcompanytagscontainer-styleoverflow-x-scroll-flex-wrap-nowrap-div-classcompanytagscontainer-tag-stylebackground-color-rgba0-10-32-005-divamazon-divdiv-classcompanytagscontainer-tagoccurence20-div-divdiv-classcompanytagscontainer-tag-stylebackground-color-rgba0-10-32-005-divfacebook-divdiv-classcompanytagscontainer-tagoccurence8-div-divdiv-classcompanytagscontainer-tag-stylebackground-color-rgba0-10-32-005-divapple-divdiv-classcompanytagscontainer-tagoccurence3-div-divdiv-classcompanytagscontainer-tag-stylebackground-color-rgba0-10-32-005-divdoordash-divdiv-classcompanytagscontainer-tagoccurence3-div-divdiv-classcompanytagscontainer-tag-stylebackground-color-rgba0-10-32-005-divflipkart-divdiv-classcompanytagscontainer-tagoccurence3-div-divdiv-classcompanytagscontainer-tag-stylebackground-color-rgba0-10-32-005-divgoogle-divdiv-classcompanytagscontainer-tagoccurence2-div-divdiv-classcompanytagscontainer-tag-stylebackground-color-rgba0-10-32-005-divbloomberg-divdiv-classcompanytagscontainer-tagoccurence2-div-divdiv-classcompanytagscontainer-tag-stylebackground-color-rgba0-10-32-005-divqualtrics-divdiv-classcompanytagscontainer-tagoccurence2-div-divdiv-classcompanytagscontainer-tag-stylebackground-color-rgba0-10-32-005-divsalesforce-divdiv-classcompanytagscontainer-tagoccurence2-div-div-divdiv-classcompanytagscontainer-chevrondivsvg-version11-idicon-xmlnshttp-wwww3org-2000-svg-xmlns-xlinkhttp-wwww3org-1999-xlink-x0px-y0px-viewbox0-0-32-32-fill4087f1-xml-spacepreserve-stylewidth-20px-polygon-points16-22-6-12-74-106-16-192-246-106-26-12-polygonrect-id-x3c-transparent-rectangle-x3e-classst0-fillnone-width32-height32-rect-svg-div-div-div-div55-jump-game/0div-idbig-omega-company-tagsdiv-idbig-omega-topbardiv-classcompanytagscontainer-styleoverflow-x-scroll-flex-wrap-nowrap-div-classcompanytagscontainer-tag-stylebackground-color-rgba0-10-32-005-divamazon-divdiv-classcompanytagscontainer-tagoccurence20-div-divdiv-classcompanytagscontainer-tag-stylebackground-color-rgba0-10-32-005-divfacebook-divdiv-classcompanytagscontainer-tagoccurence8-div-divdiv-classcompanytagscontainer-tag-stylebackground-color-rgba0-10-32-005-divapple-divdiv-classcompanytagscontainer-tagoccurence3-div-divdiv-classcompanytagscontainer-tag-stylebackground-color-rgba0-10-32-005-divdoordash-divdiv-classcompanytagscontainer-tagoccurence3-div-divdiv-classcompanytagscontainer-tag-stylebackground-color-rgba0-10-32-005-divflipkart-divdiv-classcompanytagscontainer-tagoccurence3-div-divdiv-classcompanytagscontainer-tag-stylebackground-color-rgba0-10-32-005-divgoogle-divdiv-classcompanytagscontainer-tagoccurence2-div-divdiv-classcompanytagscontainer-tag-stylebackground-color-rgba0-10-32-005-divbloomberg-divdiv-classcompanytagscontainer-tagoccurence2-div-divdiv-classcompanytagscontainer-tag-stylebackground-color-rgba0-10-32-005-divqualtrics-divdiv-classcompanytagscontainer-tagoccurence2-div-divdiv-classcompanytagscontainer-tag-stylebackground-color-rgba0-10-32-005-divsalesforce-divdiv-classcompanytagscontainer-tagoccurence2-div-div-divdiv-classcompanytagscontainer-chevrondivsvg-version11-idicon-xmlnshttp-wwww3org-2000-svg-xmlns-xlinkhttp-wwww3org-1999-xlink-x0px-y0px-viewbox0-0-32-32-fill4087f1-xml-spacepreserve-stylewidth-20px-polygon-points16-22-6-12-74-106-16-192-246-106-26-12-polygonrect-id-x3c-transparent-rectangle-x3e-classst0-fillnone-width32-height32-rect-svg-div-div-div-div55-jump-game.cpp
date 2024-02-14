@@ -9,8 +9,6 @@ public:
             else
                 return 0;
         }
-        if(p>=n-1)
         return 1;
-        return 0;
     }
 };
